@@ -1,0 +1,1 @@
+# nurtdinov_way2automation
