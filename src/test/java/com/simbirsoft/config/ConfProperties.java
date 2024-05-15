@@ -1,4 +1,4 @@
-package com.simbirsoft;
+package com.simbirsoft.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;

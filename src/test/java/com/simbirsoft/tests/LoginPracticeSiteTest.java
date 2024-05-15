@@ -1,7 +1,7 @@
 package com.simbirsoft.tests;
 
-import com.simbirsoft.ConfProperties;
-import com.simbirsoft.TestApplication;
+import com.simbirsoft.BaseTest;
+import com.simbirsoft.config.ConfProperties;
 import com.simbirsoft.pages.RegistrationPage;
 import com.simbirsoft.pages.SuccessfulRegPage;
 import io.qameta.allure.*;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class TestLoginPracticeSite extends TestApplication {
+public class LoginPracticeSiteTest extends BaseTest {
 
     protected static RegistrationPage registrationPage;
     protected static SuccessfulRegPage successfulRegPage;
@@ -38,13 +38,17 @@ public class TestLoginPracticeSite extends TestApplication {
     @Story("Проверка авторизации пользователя \"userName\"")
     @Test
     public void test() {
-        registrationPage.setUserName(ConfProperties.getProperty("userName"));
-        registrationPage.setPassword(ConfProperties.getProperty("password"));
-        registrationPage.setUserNameDescription(ConfProperties.getProperty("description"));
-        registrationPage.clickLoginButton();
-        WebElement resultLogged = successfulRegPage.loggedIn();
+        registrationPage.fillForm(
+                ConfProperties.getProperty("userName"),
+                ConfProperties.getProperty("password"),
+                ConfProperties.getProperty("description")
+        ).clickLoginButton();
+        WebElement resultLogged = successfulRegPage.getLoggedIn();
+
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(resultLogged).isNotNull();
+
+        successfulRegPage.clickLogoutButton();
     }
 
     @AfterClass

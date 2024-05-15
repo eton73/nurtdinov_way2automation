@@ -1,14 +1,15 @@
 package com.simbirsoft.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SuccessfulRegPage {
 
     private static final String USER_LOGGED_IN = "/html/body/div[1]/div/div/div/p[1]";
+    private static final String USER_LOGOUT_BUTTON = "/html/body/div[1]/div/div/div/p[2]/a";
 
     private final WebDriver driver;
 
@@ -17,9 +18,24 @@ public class SuccessfulRegPage {
         this.driver = driver;
     }
 
+    @FindBy(xpath = USER_LOGGED_IN)
+    private WebElement userLoggedIn;
+
+    @FindBy(xpath = USER_LOGOUT_BUTTON)
+    private WebElement userLogoutButton;
+
     @Step("Найти label успешной регистрации")
-    public WebElement loggedIn() {
-        return driver.findElement(By.xpath(USER_LOGGED_IN));
+    public WebElement getLoggedIn() {
+        return userLoggedIn;
+    }
+
+    @Step("Найти кнопку выхода после успешной регистрации")
+    public WebElement getLogoutButton() {
+        return userLogoutButton;
+    }
+    @Step("Нажать на кнопку выхода")
+    public void clickLogoutButton() {
+        getLogoutButton().click();
     }
 
 }

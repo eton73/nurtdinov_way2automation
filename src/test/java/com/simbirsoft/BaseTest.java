@@ -1,5 +1,6 @@
 package com.simbirsoft;
 
+import com.simbirsoft.config.ConfProperties;
 import com.simbirsoft.pages.MainPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 
 import java.time.Duration;
 
-public class TestApplication {
+public class BaseTest {
 
     protected static WebDriver driver;
     protected static MainPage mainPage;
