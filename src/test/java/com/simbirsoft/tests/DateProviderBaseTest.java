@@ -91,23 +91,6 @@ public class DateProviderBaseTest extends BaseTest {
         successfulRegPage.clickLogoutButton();
     }
 
-    @AfterMethod
-    public void onTestFailure(ITestResult tr) throws IOException {
-        if (!tr.isSuccess()) {
-            makeScreenshot();
-        }
-    }
-
-    @Attachment(value = "Attachment Screenshot", type = "image/png")
-    public byte[] makeScreenshot() throws IOException {
-        Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(100))
-                .takeScreenshot(driver);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(screenshot.getImage(), "jpg", baos);
-        return baos.toByteArray();
-    }
-
     @AfterClass
     public static void exit() {
         driver.quit();

@@ -1,12 +1,16 @@
 package com.simbirsoft;
 
 import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.helpers.ScreenshotHelper;
 import com.simbirsoft.pages.MainPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class BaseTest {
@@ -24,6 +28,13 @@ public class BaseTest {
         driver.get(ConfProperties.getProperty("startPage"));
 
         mainPage = new MainPage(driver);
+    }
+
+    @AfterMethod
+    public void makeScreenshot(ITestResult tr) throws IOException {
+        if (!tr.isSuccess()) {
+            ScreenshotHelper.makeScreenshotToByte(driver);
+        }
     }
 
     @AfterClass
