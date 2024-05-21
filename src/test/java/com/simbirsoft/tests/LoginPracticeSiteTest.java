@@ -39,9 +39,9 @@ public class LoginPracticeSiteTest extends BaseTest {
     @Test
     public void test() {
         registrationPage.fillForm(
-                ConfProperties.getProperty("userName"),
-                ConfProperties.getProperty("password"),
-                ConfProperties.getProperty("description")
+            ConfProperties.getProperty("userName"),
+            ConfProperties.getProperty("password"),
+            ConfProperties.getProperty("description")
         ).clickLoginButton();
         WebElement resultLogged = successfulRegPage.getLoggedIn();
 
@@ -55,5 +55,4 @@ public class LoginPracticeSiteTest extends BaseTest {
     public static void exit() {
         driver.quit();
     }
-
 }

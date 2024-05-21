@@ -1,9 +1,9 @@
 package com.simbirsoft.tests;
 
 import com.simbirsoft.BaseTest;
+import com.simbirsoft.config.ConfProperties;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
@@ -14,8 +14,9 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Наличие элементов")
     @Story("Проверка наличия элементов")
-    @Test(priority = 0)
+    @Test
     public void testElements() {
+        driver.get(ConfProperties.getProperty("startPage"));
         WebElement resultHeader = mainPage.getHeader();
         WebElement resultMenu = mainPage.getMenu();
         WebElement resultCertification = mainPage.getCertification();
@@ -38,10 +39,9 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Основное меню")
     @Story("Наличие основного меню при скроллинге")
-    @Test(priority = 1)
+    @Test
     public void testScroll() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,10000)");
+        mainPage.scrollBy();
 
         WebElement mainMenu = mainPage.getMainMenu();
 
@@ -53,7 +53,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Переход на другую страницу")
     @Story("Переход на страницу \"Robot Framework\"")
-    @Test(priority = 2)
+    @Test
     public void testChangePage(){
         WebElement videoTutorial = mainPage.getVideoMenu();
         WebElement robotFramework = mainPage.getVideoRobotFramework();
@@ -63,5 +63,4 @@ public class ExistenceObjectsTest extends BaseTest {
 
         robotFramework.click();
     }
-
 }
