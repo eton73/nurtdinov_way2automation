@@ -7,14 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationPage {
 
-    private static final String USER_NAME_ID = "username";
-    private static final String PASSWORD_ID = "password";
     private static final String USER_NAME_DESCRIPTION_CSS =
             "input.form-control.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required.ng-valid-maxlength.ng-valid-minlength";
     private static final String USER_NAME_DESCRIPTION_WRONG_CSS =
             "input.form-control.ng-valid-maxlength.ng-dirty.ng-valid-parse.ng-valid-required.ng-valid.ng-valid-minlength.ng-touched";
-    private static final String LOGIN_BUTTON_CSS = "button.btn.btn-danger";
-    private static final String INCORRECT_USERNAME_OR_PASSWORD_XPATH = "/html/body/div[1]/div/div/div/div[2]";
 
     private final WebDriver driver;
     public RegistrationPage(WebDriver driver) {
@@ -22,16 +18,16 @@ public class RegistrationPage {
         this.driver = driver;
     }
 
-    @FindBy(id = USER_NAME_ID)
+    @FindBy(id = "username")
     private WebElement userName;
 
-    @FindBy(id = PASSWORD_ID)
+    @FindBy(id = "password")
     private WebElement password;
 
-    @FindBy(css = LOGIN_BUTTON_CSS)
+    @FindBy(css = "button.btn.btn-danger")
     private WebElement loginButton;
 
-    @FindBy(xpath = INCORRECT_USERNAME_OR_PASSWORD_XPATH)
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[2]")
     private WebElement incorrectLoginOrPassword;
 
     @Step("Найти строку \"UserName\"")
@@ -73,7 +69,7 @@ public class RegistrationPage {
         getUserNameDescription().sendKeys(value);
     }
 
-    @Step("Ввести форму ввода")
+    @Step("Заполнить форму")
     public RegistrationPage fillForm(String username, String password, String description) {
         setUserName(Keys.chord(Keys.CONTROL, "a"));
         setUserName(username);
@@ -93,5 +89,4 @@ public class RegistrationPage {
     public WebElement getIncorrectLoginOrPassword() {
         return incorrectLoginOrPassword;
     }
-
 }

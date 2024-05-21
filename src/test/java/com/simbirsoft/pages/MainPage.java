@@ -1,22 +1,13 @@
 package com.simbirsoft.pages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MainPage {
-
-    private static final String HEADER_CSS = "ul.elementor-icon-list-items.elementor-inline-items";
-    private static final String MENU_ID = "ast-hf-menu-1";
-    private static final String SERTIFICATION_CLASS_NAME = "elementor-container.elementor-column-gap-default";
-    private static final String SLIDER_XPATH = "//*[@id=\"post-17\"]/div/div/section[4]/div[2]/div/div/div/div/div/div[1]/div/div[5]";
-    private static final String SLIDER_BUTTON_CSS = "div.pp-slider-arrow.swiper-button-next";
-    private static final String FOOTER_CLASS_NAME = "elementor-widget-container";
-    private static final String MAIN_MENU_CLASS_NAME = "ast-primary-header-bar.ast-primary-header.main-header-bar.site-header-focus-item.ast-sticky-active.ast-sticky-shrunk.ast-header-sticked";
-    private static final String VIDEO_XPATH = "//*[@id=\"menu-item-27597\"]";
-    private static final String VIDEO_ROBOT_FRAMEWORK_XPATH = "//*[@id=\"menu-item-27603\"]/a/span[2]";
 
     private final WebDriver driver;
 
@@ -25,31 +16,31 @@ public class MainPage {
         this.driver = driver;
     }
 
-    @FindBy(css = HEADER_CSS)
+    @FindBy(css = "ul.elementor-icon-list-items.elementor-inline-items")
     private WebElement header;
 
-    @FindBy(id = MENU_ID)
+    @FindBy(id = "ast-hf-menu-1")
     private WebElement menu;
 
-    @FindBy(className = SERTIFICATION_CLASS_NAME)
+    @FindBy(className = "elementor-container.elementor-column-gap-default")
     private WebElement certificationBlock;
 
-    @FindBy(xpath = SLIDER_XPATH)
+    @FindBy(xpath = "//*[@id=\"post-17\"]/div/div/section[4]/div[2]/div/div/div/div/div/div[1]/div/div[5]")
     private WebElement slider;
 
-    @FindBy(css = SLIDER_BUTTON_CSS)
+    @FindBy(css = "div.pp-slider-arrow.swiper-button-next")
     private WebElement sliderButton;
 
-    @FindBy(className = FOOTER_CLASS_NAME)
+    @FindBy(className = "elementor-widget-container")
     private WebElement footer;
 
-    @FindBy(className = MAIN_MENU_CLASS_NAME)
+    @FindBy(className = "ast-primary-header-bar.ast-primary-header.main-header-bar.site-header-focus-item.ast-sticky-active.ast-sticky-shrunk.ast-header-sticked")
     private WebElement mainMenu;
 
-    @FindBy(xpath = VIDEO_XPATH)
+    @FindBy(xpath = "//*[@id=\"menu-item-27597\"]")
     private WebElement videoTutorial;
 
-    @FindBy(xpath = VIDEO_ROBOT_FRAMEWORK_XPATH)
+    @FindBy(xpath = "//*[@id=\"menu-item-27603\"]/a/span[2]")
     private WebElement robotFramework;
 
     @Step("Найти хидер с реквизитами для связи")
@@ -102,4 +93,9 @@ public class MainPage {
         return robotFramework;
     }
 
+    @Step("Скроллить страницу вниз")
+    public void scrollBy() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,10000)");
+    }
 }

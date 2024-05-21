@@ -8,9 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SuccessfulRegPage {
 
-    private static final String USER_LOGGED_IN = "/html/body/div[1]/div/div/div/p[1]";
-    private static final String USER_LOGOUT_BUTTON = "/html/body/div[1]/div/div/div/p[2]/a";
-
     private final WebDriver driver;
 
     public SuccessfulRegPage(WebDriver driver) {
@@ -18,10 +15,10 @@ public class SuccessfulRegPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = USER_LOGGED_IN)
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/p[1]")
     private WebElement userLoggedIn;
 
-    @FindBy(xpath = USER_LOGOUT_BUTTON)
+    @FindBy(xpath = "/html/body/div[1]/div/div/div/p[2]/a")
     private WebElement userLogoutButton;
 
     @Step("Найти label успешной регистрации")
@@ -37,5 +34,4 @@ public class SuccessfulRegPage {
     public void clickLogoutButton() {
         getLogoutButton().click();
     }
-
 }
