@@ -30,6 +30,7 @@ public class SuccessfulRegPage {
     public WebElement getLogoutButton() {
         return userLogoutButton;
     }
+
     @Step("Нажать на кнопку выхода")
     public void clickLogoutButton() {
         getLogoutButton().click();
