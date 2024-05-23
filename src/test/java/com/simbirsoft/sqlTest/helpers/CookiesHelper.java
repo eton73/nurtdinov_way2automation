@@ -1,4 +1,4 @@
-package sqlTest.helpers;
+package com.simbirsoft.sqlTest.helpers;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;

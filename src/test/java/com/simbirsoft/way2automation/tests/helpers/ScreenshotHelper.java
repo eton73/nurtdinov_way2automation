@@ -1,4 +1,4 @@
-package com.simbirsoft.helpers;
+package com.simbirsoft.way2automation.tests.helpers;
 
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.WebDriver;

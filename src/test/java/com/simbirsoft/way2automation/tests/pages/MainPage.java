@@ -1,4 +1,4 @@
-package com.simbirsoft.pages;
+package com.simbirsoft.way2automation.tests.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;

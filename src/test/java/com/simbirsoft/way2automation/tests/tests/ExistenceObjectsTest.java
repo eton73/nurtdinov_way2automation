@@ -1,7 +1,6 @@
-package com.simbirsoft.tests;
+package com.simbirsoft.way2automation.tests.tests;
 
-import com.simbirsoft.BaseTest;
-import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.way2automation.tests.config.ConfProperties;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
@@ -39,7 +38,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Основное меню")
     @Story("Наличие основного меню при скроллинге")
-    @Test
+    @Test(threadPoolSize = 2)
     public void testScroll() {
         mainPage.scrollBy();
 
@@ -53,7 +52,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Переход на другую страницу")
     @Story("Переход на страницу \"Robot Framework\"")
-    @Test
+    @Test(threadPoolSize = 2)
     public void testChangePage(){
         WebElement videoTutorial = mainPage.getVideoMenu();
         WebElement robotFramework = mainPage.getVideoRobotFramework();

@@ -1,6 +1,6 @@
-package sqlTest;
+package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.way2automation.tests.config.ConfProperties;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import sqlTest.page.BaseSQLPage;
+import com.simbirsoft.sqlTest.pages.BaseSQLPage;
 
 import java.time.Duration;
 
@@ -32,7 +32,7 @@ public class JavaScriptExecutorTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Фокус")
     @Story("Убрать фокус из поля ввода")
-    @Test
+    @Test(threadPoolSize = 2)
     public void testDropFocus() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(baseSQLPage.dropFocus()).isTrue();
@@ -42,7 +42,7 @@ public class JavaScriptExecutorTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Скролл")
     @Story("Наличие скролла")
-    @Test
+    @Test(threadPoolSize = 2)
     public void testIsScrollHeight() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(baseSQLPage.isScrollHeight()).isTrue();

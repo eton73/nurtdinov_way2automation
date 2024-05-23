@@ -1,9 +1,9 @@
-package sqlTest;
+package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.way2automation.tests.config.ConfProperties;
 import io.qameta.allure.*;
-import sqlTest.helpers.CookiesHelper;
-import sqlTest.page.BaseSQLPage;
+import com.simbirsoft.sqlTest.helpers.CookiesHelper;
+import com.simbirsoft.sqlTest.pages.BaseSQLPage;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class BaseCookiesTest {
+public class BaseTest {
 
     private static final String PHPSESSID_COOKIE_NAME = "PHPSESSID";
 
@@ -35,7 +35,7 @@ public class BaseCookiesTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Cookies")
     @Story("Сохранить Cookies и войти по сохранённым кукам на сайт")
-    @Test
+    @Test(threadPoolSize = 3)
     public void testASave() {
         baseSQLPage.setLogin(ConfProperties.getProperty("userNameCookies"));
         baseSQLPage.setPassword(ConfProperties.getProperty("passwordCookies"));
