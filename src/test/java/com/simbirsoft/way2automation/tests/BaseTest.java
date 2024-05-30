@@ -1,6 +1,7 @@
 package com.simbirsoft.way2automation.tests;
 
 import com.simbirsoft.way2automation.config.ConfProperties;
+import com.simbirsoft.way2automation.helpers.Constants;
 import com.simbirsoft.way2automation.helpers.RunTestAgain;
 import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
 import com.simbirsoft.way2automation.pages.MainPage;
@@ -39,7 +40,7 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
+        driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(ConfProperties.getProperty("startPage"));
