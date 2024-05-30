@@ -1,11 +1,11 @@
 <suite name="Independent test Suite">
-<test name="Independent test">
-<classes>
-<class name="com.simbirsoft.sqlTest.tests.BaseTest" />
-<class name="com.simbirsoft.sqlTest.tests.JavaScriptExecutorTest" />
-<class name="com.simbirsoft.way2automation.tests.tests.DateProviderBaseTest" />
-<class name="com.simbirsoft.way2automation.tests.tests.ExistenceObjectsTest" />
-<class name="com.simbirsoft.way2automation.tests.tests.LoginPracticeSiteTest" />
-</classes>
-</test>
+    <test name="Independent test">
+        <classes>
+            <class name="com.simbirsoft.sqlTest.tests.BaseTest" />
+            <class name="com.simbirsoft.sqlTest.tests.JavaScriptExecutorTest" />
+            <class name="com.simbirsoft.way2automation.tests.DateProviderBaseTest" />
+            <class name="com.simbirsoft.way2automation.tests.ExistenceObjectsTest" />
+            <class name="com.simbirsoft.way2automation.tests.LoginPracticeSiteTest" />
+        </classes>
+    </test>
 </suite>

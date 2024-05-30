@@ -1,6 +1,6 @@
 package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.way2automation.tests.config.ConfProperties;
+import com.simbirsoft.way2automation.config.ConfProperties;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;

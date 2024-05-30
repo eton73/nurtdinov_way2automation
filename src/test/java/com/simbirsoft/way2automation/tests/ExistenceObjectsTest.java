@@ -1,6 +1,6 @@
-package com.simbirsoft.way2automation.tests.tests;
+package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.tests.config.ConfProperties;
+import com.simbirsoft.way2automation.config.ConfProperties;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;

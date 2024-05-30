@@ -1,0 +1,32 @@
+<suite name="Independent test Suite 2">
+    <test name = "Test On Chrome">
+        <parameter name = "browserType" value="Chrome"/>
+        <classes>
+            <class name = "com.simbirsoft.way2automation.tests.DriverFactoryTesting">
+                <methods>
+                    <include name="testExamplePageOnMultipleBrowsers"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "Test On Edge">
+        <parameter name = "browserType" value="Edge"/>
+        <classes>
+            <class name = "com.simbirsoft.way2automation.tests.DriverFactoryTesting">
+                <methods>
+                    <include name="testExamplePageOnMultipleBrowsers"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "Test On Firefox">
+        <parameter name = "browserType" value="Firefox"/>
+        <classes>
+            <class name = "com.simbirsoft.way2automation.tests.DriverFactoryTesting">
+                <methods>
+                    <include name="testExamplePageOnMultipleBrowsers"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

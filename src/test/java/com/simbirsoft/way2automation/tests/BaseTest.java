@@ -1,15 +1,19 @@
-package com.simbirsoft.way2automation.tests.tests;
+package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.tests.config.ConfProperties;
-import com.simbirsoft.way2automation.tests.helpers.ScreenshotHelper;
-import com.simbirsoft.way2automation.tests.pages.MainPage;
+import com.simbirsoft.way2automation.config.ConfProperties;
+import com.simbirsoft.way2automation.helpers.RunTestAgain;
+import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
+import com.simbirsoft.way2automation.pages.MainPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -20,6 +24,15 @@ public class BaseTest {
 
     protected static WebDriver driver;
     protected static MainPage mainPage;
+
+    @BeforeSuite
+    public void setUpTestsSuite(ITestContext testsContext) {
+        for (ITestNGMethod testMethod : testsContext.getAllTestMethods()) {
+            if (testMethod.getRetryAnalyzer() == null) {
+                testMethod.setRetryAnalyzer(new RunTestAgain());
+            }
+        }
+    }
 
     @BeforeClass
     public static void setup() throws MalformedURLException {

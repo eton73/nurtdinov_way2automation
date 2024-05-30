@@ -1,4 +1,4 @@
-package com.simbirsoft.way2automation.tests.config;
+package com.simbirsoft.way2automation.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
