@@ -35,7 +35,7 @@ public class BaseTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Cookies")
     @Story("Сохранить Cookies и войти по сохранённым кукам на сайт")
-    @Test(threadPoolSize = 3)
+    @Test
     public void testASave() {
         baseSQLPage.setLogin(ConfProperties.getProperty("userNameCookies"));
         baseSQLPage.setPassword(ConfProperties.getProperty("passwordCookies"));

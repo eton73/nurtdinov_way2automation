@@ -32,7 +32,7 @@ public class JavaScriptExecutorTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Фокус")
     @Story("Убрать фокус из поля ввода")
-    @Test(threadPoolSize = 2)
+    @Test
     public void testDropFocus() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(baseSQLPage.dropFocus()).isTrue();
@@ -42,7 +42,7 @@ public class JavaScriptExecutorTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Скролл")
     @Story("Наличие скролла")
-    @Test(threadPoolSize = 2)
+    @Test
     public void testIsScrollHeight() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(baseSQLPage.isScrollHeight()).isTrue();

@@ -1,4 +1,13 @@
-<suite name="Independent test Suite 2">
+<suite name="Independent test Suite" parallel="methods" thread-count="2">
+    <test name="Independent test">
+        <classes>
+            <class name="com.simbirsoft.sqlTest.tests.BaseTest" />
+            <class name="com.simbirsoft.sqlTest.tests.JavaScriptExecutorTest" />
+            <class name="com.simbirsoft.way2automation.tests.DateProviderBaseTest" />
+            <class name="com.simbirsoft.way2automation.tests.ExistenceObjectsTest" />
+            <class name="com.simbirsoft.way2automation.tests.LoginPracticeSiteTest" />
+        </classes>
+    </test>
     <test name = "Test On Chrome">
         <parameter name = "browserType" value="Chrome"/>
         <classes>

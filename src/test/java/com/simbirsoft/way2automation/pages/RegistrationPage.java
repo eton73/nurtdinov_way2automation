@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 public class RegistrationPage {
 
     private static final String USER_NAME_DESCRIPTION_CSS =
-            "input.form-control.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required.ng-valid-maxlength.ng-valid-minlength";
+            "input.form-control.ng-pristine.ng-untouched.ng-invalid";
     private static final String USER_NAME_DESCRIPTION_WRONG_CSS =
-            "input.form-control.ng-valid-maxlength.ng-dirty.ng-valid-parse.ng-valid-required.ng-valid.ng-valid-minlength.ng-touched";
+            "input.form-control.ng-valid-maxlength.ng-dirty.ng-valid-parse";
 
     private final WebDriver driver;
     public RegistrationPage(WebDriver driver) {
@@ -55,17 +55,17 @@ public class RegistrationPage {
     }
 
     @Step("Ввести имя пользователя")
-    public void setUserName(CharSequence value) {
+    public void setUserName(String value) {
         getUserName().sendKeys(value);
     }
 
     @Step("Ввести пароль пользователя")
-    public void setPassword(CharSequence value) {
+    public void setPassword(String value) {
         getPassword().sendKeys(value);
     }
 
     @Step("Ввести описание имени пользователя")
-    public void setUserNameDescription(CharSequence value) {
+    public void setUserNameDescription(String value) {
         getUserNameDescription().sendKeys(value);
     }
 

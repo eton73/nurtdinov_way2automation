@@ -1,9 +1,8 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.config.ConfProperties;
-import com.simbirsoft.way2automation.helpers.Constants;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegPage;
+import com.simbirsoft.way2automation.config.ConfProperties;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
@@ -46,16 +45,16 @@ public class DateProviderBaseTest extends BaseTest {
     @Epic("Проверка сайта \"Way2Automation\"")
     @Feature("Авторизация")
     @Story("Проверка авторизации пользователя \"userName\"")
-    @Test(dataProvider = "data-provider", threadPoolSize = 2)
-    public void test(String name, String pass, String desc) {
+    @Test(dataProvider = "data-provider")
+    public void test(String name, String password, String description) {
         SoftAssertions softAssertions = new SoftAssertions();
         registrationPage.fillForm(
                 name,
-                pass,
-                desc
+                password,
+                description
         ).clickLoginButton();
 
-        if (name.equals(ConfProperties.getProperty("userName")) && pass.equals(ConfProperties.getProperty("password"))) {
+        if (name.equals(ConfProperties.getProperty("userName")) && password.equals(ConfProperties.getProperty("password"))) {
             WebElement resultLogged = successfulRegPage.getLoggedIn();
 
             softAssertions.assertThat(resultLogged).isNotNull();
@@ -77,7 +76,7 @@ public class DateProviderBaseTest extends BaseTest {
     @Epic("Проверка сайта \"Way2Automation\"")
     @Feature("Авторизация")
     @Story("Проверка авторизации пользователя без ввода данных")
-    @Test(dataProvider = "failure-data-provider", threadPoolSize = 2)
+    @Test(dataProvider = "failure-data-provider")
     public void testFailed(String name, String pass, String desc) {
         SoftAssertions softAssertions = new SoftAssertions();
         registrationPage.fillForm(name, pass, desc).clickLoginButton();

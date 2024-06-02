@@ -57,7 +57,8 @@ public class BaseSQLPage {
         login.sendKeys("future");
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-        jse.executeScript("document.querySelector(\"body > table:nth-child(4) > tbody > tr > td:nth-child(1) > form > table > tbody > tr:nth-child(1) > td > input[type=text]:nth-child(2)\").blur()");
+        jse.executeScript("document.querySelector(\"body > table:nth-child(4) > tbody > tr > td:nth-child(1) " +
+                "> form > table > tbody > tr:nth-child(1) > td > input[type=text]:nth-child(2)\").blur()");
         return (Boolean) jse.executeScript("return document.activeElement == document.body");
     }
 
@@ -66,6 +67,7 @@ public class BaseSQLPage {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
         WebElement container = driver.findElement(By.xpath("/html/body"));
-        return (Boolean) jse.executeScript("return arguments[0].scrollHeight > arguments[0].offsetHeight;", container);
+        return (Boolean) jse.executeScript("return document.documentElement.scrollHeight " +
+                "> document.documentElement.clientHeight;", container);
     }
 }

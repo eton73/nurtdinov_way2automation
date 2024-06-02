@@ -38,7 +38,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Основное меню")
     @Story("Наличие основного меню при скроллинге")
-    @Test(threadPoolSize = 2)
+    @Test
     public void testScroll() {
         mainPage.scrollBy();
 
@@ -52,7 +52,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @Epic("Проверка сайта Way2Automation")
     @Feature("Переход на другую страницу")
     @Story("Переход на страницу \"Robot Framework\"")
-    @Test(threadPoolSize = 2)
+    @Test
     public void testChangePage(){
         WebElement videoTutorial = mainPage.getVideoMenu();
         WebElement robotFramework = mainPage.getVideoRobotFramework();
