@@ -1,6 +1,6 @@
 package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.way2automation.tests.config.ConfProperties;
+import com.simbirsoft.way2automation.config.ConfProperties;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;
@@ -35,7 +35,7 @@ public class BaseTest {
     @Epic("Проверка сайта sql-ex.ru")
     @Feature("Cookies")
     @Story("Сохранить Cookies и войти по сохранённым кукам на сайт")
-    @Test(threadPoolSize = 3)
+    @Test
     public void testASave() {
         baseSQLPage.setLogin(ConfProperties.getProperty("userNameCookies"));
         baseSQLPage.setPassword(ConfProperties.getProperty("passwordCookies"));

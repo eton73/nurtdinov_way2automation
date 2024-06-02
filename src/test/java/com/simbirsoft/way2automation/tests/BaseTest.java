@@ -1,8 +1,8 @@
-package com.simbirsoft.way2automation.tests.tests;
+package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.tests.config.ConfProperties;
-import com.simbirsoft.way2automation.tests.helpers.ScreenshotHelper;
-import com.simbirsoft.way2automation.tests.pages.MainPage;
+import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
+import com.simbirsoft.way2automation.pages.MainPage;
+import com.simbirsoft.way2automation.config.ConfProperties;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;

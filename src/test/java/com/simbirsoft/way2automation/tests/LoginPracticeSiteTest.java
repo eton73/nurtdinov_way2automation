@@ -1,8 +1,8 @@
-package com.simbirsoft.way2automation.tests.tests;
+package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.tests.config.ConfProperties;
-import com.simbirsoft.way2automation.tests.pages.RegistrationPage;
-import com.simbirsoft.way2automation.tests.pages.SuccessfulRegPage;
+import com.simbirsoft.way2automation.pages.RegistrationPage;
+import com.simbirsoft.way2automation.pages.SuccessfulRegPage;
+import com.simbirsoft.way2automation.config.ConfProperties;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
@@ -39,7 +39,7 @@ public class LoginPracticeSiteTest extends BaseTest {
     @Epic("Проверка сайта \"Way2Automation\"")
     @Feature("Авторизация")
     @Story("Проверка авторизации пользователя \"userName\"")
-    @Test(threadPoolSize = 3)
+    @Test
     public void test() {
         registrationPage.fillForm(
             ConfProperties.getProperty("userName"),
