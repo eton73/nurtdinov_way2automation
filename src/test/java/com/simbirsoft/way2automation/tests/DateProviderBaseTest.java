@@ -1,5 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
+import com.simbirsoft.way2automation.helpers.Constants;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegPage;
 import com.simbirsoft.way2automation.config.ConfProperties;
