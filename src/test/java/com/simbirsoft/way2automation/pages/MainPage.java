@@ -25,7 +25,7 @@ public class MainPage {
     @FindBy(className = "elementor-container.elementor-column-gap-default")
     private WebElement certificationBlock;
 
-    @FindBy(xpath = "//*[@id=\"post-17\"]/div/div/section[4]/div[2]/div/div/div/div/div/div[1]/div/div[5]")
+    @FindBy(css = "div[data-swiper-slide-index='0']")
     private WebElement slider;
 
     @FindBy(css = "div.pp-slider-arrow.swiper-button-next")
@@ -34,7 +34,7 @@ public class MainPage {
     @FindBy(className = "elementor-widget-container")
     private WebElement footer;
 
-    @FindBy(className = "ast-primary-header-bar.ast-primary-header.main-header-bar.site-header-focus-item.ast-sticky-active.ast-sticky-shrunk.ast-header-sticked")
+    @FindBy(className = "ast-primary-header-bar.ast-primary-header")
     private WebElement mainMenu;
 
     @FindBy(xpath = "//*[@id=\"menu-item-27597\"]")

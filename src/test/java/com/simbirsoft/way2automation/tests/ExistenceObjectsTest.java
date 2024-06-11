@@ -1,13 +1,26 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.config.ConfProperties;
+import com.simbirsoft.way2automation.helpers.ConfHelpers;
+import com.simbirsoft.way2automation.pages.MainPage;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 public class ExistenceObjectsTest extends BaseTest {
+    protected static MainPage mainPage;
+
+    @BeforeClass
+    public void setup() throws MalformedURLException {
+        super.setup();
+        driver.get(ConfHelpers.getProperty("startPage"));
+
+        mainPage = new MainPage(driver);
+    }
 
     @Severity(SeverityLevel.MINOR)
     @Epic("Проверка сайта Way2Automation")
@@ -15,7 +28,6 @@ public class ExistenceObjectsTest extends BaseTest {
     @Story("Проверка наличия элементов")
     @Test
     public void testElements() {
-        driver.get(ConfProperties.getProperty("startPage"));
         WebElement resultHeader = mainPage.getHeader();
         WebElement resultMenu = mainPage.getMenu();
         WebElement resultCertification = mainPage.getCertification();
@@ -61,5 +73,7 @@ public class ExistenceObjectsTest extends BaseTest {
         action.moveToElement(videoTutorial).perform();
 
         robotFramework.click();
+
+        driver.get(ConfHelpers.getProperty("startPage"));
     }
 }

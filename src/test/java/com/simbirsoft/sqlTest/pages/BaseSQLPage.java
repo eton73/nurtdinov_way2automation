@@ -20,25 +20,25 @@ public class BaseSQLPage {
     @FindBy(name = "login")
     private WebElement login;
 
-    @FindBy(xpath = "/html/body/table[2]/tbody/tr/td[1]/form/table/tbody/tr[1]/td/input[2]")
+    @FindBy(name = "psw")
     private WebElement password;
 
-    @FindBy(xpath = "/html/body/table[2]/tbody/tr/td[1]/form/table/tbody/tr[2]/td[1]/input")
+    @FindBy(name = "subm1")
     private WebElement input;
 
-    @FindBy(xpath = "/html/body/table[1]/tbody/tr/td[3]/a")
-    private WebElement logOut;
+    @FindBy(css = "a[href='/logout.php']")
+    private WebElement logout;
 
-    @FindBy(xpath = "/html/body/table[1]/tbody/tr/td[3]/b/a")
+    @FindBy(className = "none")
     private WebElement nickName;
 
     @Step("Ввести имя пользователя")
-    public void setLogin(CharSequence value) {
+    public void setLogin(String value) {
         login.sendKeys(value);
     }
 
     @Step("Ввести пароль пользователя")
-    public void setPassword(CharSequence value) {
+    public void setPassword(String value) {
         password.sendKeys(value);
     }
 
@@ -52,13 +52,18 @@ public class BaseSQLPage {
         return nickName;
     }
 
+    @Step("Кликнуть кнопку выхода")
+    public void clickExitButton() {
+        logout.click();
+    }
+
     @Step("Убрать фокус")
     public Boolean dropFocus() {
+
         login.sendKeys("future");
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-        jse.executeScript("document.querySelector(\"body > table:nth-child(4) > tbody > tr > td:nth-child(1) " +
-                "> form > table > tbody > tr:nth-child(1) > td > input[type=text]:nth-child(2)\").blur()");
+        jse.executeScript("document.querySelector(\"input\").blur()");
         return (Boolean) jse.executeScript("return document.activeElement == document.body");
     }
 
