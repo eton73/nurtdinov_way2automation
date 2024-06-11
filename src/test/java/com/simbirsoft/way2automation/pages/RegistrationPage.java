@@ -27,7 +27,7 @@ public class RegistrationPage {
     @FindBy(css = "button.btn.btn-danger")
     private WebElement loginButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div/div/div/div[2]")
+    @FindBy(className = "alert.alert-danger")
     private WebElement incorrectLoginOrPassword;
 
     @Step("Найти строку \"UserName\"")

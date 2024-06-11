@@ -1,44 +1,38 @@
 package com.simbirsoft.way2automation.tests;
 
+import com.simbirsoft.way2automation.helpers.ConfHelpers;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
-import com.simbirsoft.way2automation.pages.SuccessfulRegPage;
-import com.simbirsoft.way2automation.config.ConfProperties;
+import com.simbirsoft.way2automation.pages.SuccessfulRegistrationPage;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
 
 
 public class DateProviderBaseTest extends BaseTest {
 
     protected static RegistrationPage registrationPage;
-    protected static SuccessfulRegPage successfulRegPage;
+    protected static SuccessfulRegistrationPage successfulRegistrationPage;
 
     @BeforeClass
-    public static void setup() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
-
-        ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfProperties.getProperty("registrationPage"));
+    public void setup() throws MalformedURLException {
+        super.setup();
+        driver.get(ConfHelpers.getProperty("registrationPage"));
 
         registrationPage = new RegistrationPage(driver);
-        successfulRegPage = new SuccessfulRegPage(driver);
+        successfulRegistrationPage = new SuccessfulRegistrationPage(driver);
     }
 
     @DataProvider(name = "data-provider")
     public Object[][] dataProviderMethod() {
-        return new Object[][] { { "angular", "password", "descr"},
-                { "UsernameWrong_1", "password", "descrAnother_1" },
-                {"angular", "passwordWrong_2", "descrAnother_2"},
-                {"UsernameWrong_3", "passwordWrong_3", "descrAnother_3"}};
+        return new Object[][] { { "angular", "password", "description"},
+                { "UsernameWrong_1", "password", "Another_1" },
+                {"angular", "passwordWrong_2", "Another_2"},
+                {"UsernameWrong_3", "passwordWrong_3", "Another_3"}};
     }
 
     @Severity(SeverityLevel.CRITICAL)
@@ -54,12 +48,12 @@ public class DateProviderBaseTest extends BaseTest {
                 description
         ).clickLoginButton();
 
-        if (name.equals(ConfProperties.getProperty("userName")) && password.equals(ConfProperties.getProperty("password"))) {
-            WebElement resultLogged = successfulRegPage.getLoggedIn();
+        if (name.equals(ConfHelpers.getProperty("userName")) && password.equals(ConfHelpers.getProperty("password"))) {
+            WebElement resultLogged = successfulRegistrationPage.getLoggedIn();
 
             softAssertions.assertThat(resultLogged).isNotNull();
 
-            successfulRegPage.clickLogoutButton();
+            successfulRegistrationPage.clickLogoutButton();
         } else {
             WebElement incorrectLoginOrPassword = registrationPage.getIncorrectLoginOrPassword();
             softAssertions.assertThat(incorrectLoginOrPassword).isNotNull();
@@ -68,7 +62,7 @@ public class DateProviderBaseTest extends BaseTest {
 
     @DataProvider(name = "failure-data-provider")
     public Object[][] dataProviderFailureMethod() {
-        return new Object[][] { { "", "", "descr"},
+        return new Object[][] { { "", "", "description"},
                 { "angular", "password", "" }};
     }
 
@@ -77,17 +71,12 @@ public class DateProviderBaseTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Проверка авторизации пользователя без ввода данных")
     @Test(dataProvider = "failure-data-provider")
-    public void testFailed(String name, String pass, String desc) {
+    public void testFailed(String name, String password, String description) {
         SoftAssertions softAssertions = new SoftAssertions();
-        registrationPage.fillForm(name, pass, desc).clickLoginButton();
+        registrationPage.fillForm(name, password, description).clickLoginButton();
 
-        WebElement resultLogged = successfulRegPage.getLoggedIn();
+        WebElement resultLogged = successfulRegistrationPage.getLoggedIn();
         softAssertions.assertThat(resultLogged).isNotNull();
-        successfulRegPage.clickLogoutButton();
-    }
-
-    @AfterClass
-    public static void exit() {
-        driver.quit();
+        successfulRegistrationPage.clickLogoutButton();
     }
 }

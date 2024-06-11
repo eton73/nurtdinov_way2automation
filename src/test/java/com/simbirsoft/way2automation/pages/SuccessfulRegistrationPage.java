@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SuccessfulRegPage {
+public class SuccessfulRegistrationPage {
 
     private final WebDriver driver;
 
-    public SuccessfulRegPage(WebDriver driver) {
+    public SuccessfulRegistrationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }

@@ -2,7 +2,7 @@ package com.simbirsoft.way2automation.tests;
 
 import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
 import com.simbirsoft.way2automation.pages.MainPage;
-import com.simbirsoft.way2automation.config.ConfProperties;
+import com.simbirsoft.way2automation.helpers.ConfHelpers;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,16 +22,13 @@ public class BaseTest {
     protected static MainPage mainPage;
 
     @BeforeClass
-    public static void setup() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
+    public void setup() throws MalformedURLException {
+        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
         driver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfProperties.getProperty("startPage"));
-
-        mainPage = new MainPage(driver);
     }
 
     @AfterMethod
