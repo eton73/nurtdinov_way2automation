@@ -3,8 +3,7 @@ package com.simbirsoft.way2automation.tests;
 import com.simbirsoft.way2automation.helpers.Constants;
 import com.simbirsoft.way2automation.helpers.RunTestAgain;
 import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
-import com.simbirsoft.way2automation.pages.MainPage;
-import com.simbirsoft.way2automation.config.ConfProperties;
+import com.simbirsoft.way2automation.helpers.ConfHelpers;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -23,8 +22,11 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected static WebDriver driver;
-    protected static MainPage mainPage;
+    protected ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+
+    protected WebDriver getWebDriver() {
+        return this.driver.get();
+    }
 
     @BeforeSuite
     public void setUpTestsSuite(ITestContext testsContext) {
@@ -36,27 +38,24 @@ public class BaseTest {
     }
 
     @BeforeClass
-    public static void setup() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
+    public void setup() throws MalformedURLException {
+        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfProperties.getProperty("startPage"));
-
-        mainPage = new MainPage(driver);
+        driver.set(new RemoteWebDriver(new URL(Constants.URL_GRID), options));
+        getWebDriver().manage().window().maximize();
+        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterMethod
     public void makeScreenshot(ITestResult tr) throws IOException {
         if (!tr.isSuccess()) {
-            ScreenshotHelper.makeScreenshotToByte(driver);
+            ScreenshotHelper.makeScreenshotToByte(getWebDriver());
         }
     }
 
     @AfterClass
-    public static void exit() {
-        driver.quit();
+    public void exit() {
+        driver.get().quit();
     }
 }

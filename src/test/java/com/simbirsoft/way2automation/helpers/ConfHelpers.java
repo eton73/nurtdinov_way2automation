@@ -1,10 +1,10 @@
-package com.simbirsoft.way2automation.config;
+package com.simbirsoft.way2automation.helpers;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfProperties {
+public class ConfHelpers {
 
     protected static FileInputStream fileInputStream;
     protected static Properties properties;

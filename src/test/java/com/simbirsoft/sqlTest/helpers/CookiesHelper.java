@@ -15,13 +15,16 @@ public class CookiesHelper {
         File file = new File("Cookies.data");
 
         try {
-            file.delete();
-            file.createNewFile();
+            if (!file.createNewFile()) {
+                file.deleteOnExit();
+            }
             FileWriter fileWrite = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWrite);
 
             for (Cookie ck : driver.manage().getCookies()) {
-                bufferedWriter.write((ck.getName() + ";" + ck.getValue() + ";" + ck.getDomain() + ";" + ck.getPath() + ";" + ck.getExpiry() + ";" + ck.isSecure()));
+                bufferedWriter.write((ck.getName() + ";" + ck.getValue() + ";"
+                        + ck.getDomain() + ";" + ck.getPath() + ";"
+                        + ck.getExpiry() + ";" + ck.isSecure()));
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
