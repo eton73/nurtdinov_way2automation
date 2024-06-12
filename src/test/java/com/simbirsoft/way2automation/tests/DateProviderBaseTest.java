@@ -15,16 +15,16 @@ import java.net.MalformedURLException;
 
 public class DateProviderBaseTest extends BaseTest {
 
-    protected static RegistrationPage registrationPage;
-    protected static SuccessfulRegistrationPage successfulRegistrationPage;
+    protected RegistrationPage registrationPage;
+    protected SuccessfulRegistrationPage successfulRegistrationPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {
         super.setup();
-        driver.get(ConfHelpers.getProperty("registrationPage"));
+        getWebDriver().get(ConfHelpers.getProperty("registrationPage"));
 
-        registrationPage = new RegistrationPage(driver);
-        successfulRegistrationPage = new SuccessfulRegistrationPage(driver);
+        registrationPage = new RegistrationPage(getWebDriver());
+        successfulRegistrationPage = new SuccessfulRegistrationPage(getWebDriver());
     }
 
     @DataProvider(name = "data-provider")

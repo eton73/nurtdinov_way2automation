@@ -13,16 +13,16 @@ import java.net.MalformedURLException;
 
 public class LoginPracticeSiteTest extends BaseTest {
 
-    protected static RegistrationPage registrationPage;
-    protected static SuccessfulRegistrationPage successfulRegPage;
+    protected RegistrationPage registrationPage;
+    protected SuccessfulRegistrationPage successfulRegPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {
         super.setup();
-        driver.get(ConfHelpers.getProperty("registrationPage"));
+        getWebDriver().get(ConfHelpers.getProperty("registrationPage"));
 
-        registrationPage = new RegistrationPage(driver);
-        successfulRegPage = new SuccessfulRegistrationPage(driver);
+        registrationPage = new RegistrationPage(getWebDriver());
+        successfulRegPage = new SuccessfulRegistrationPage(getWebDriver());
     }
 
     @Severity(SeverityLevel.CRITICAL)

@@ -1,35 +1,44 @@
 package com.simbirsoft.sqlTest.tests;
 
 import com.simbirsoft.way2automation.helpers.ConfHelpers;
+import com.simbirsoft.way2automation.helpers.Constants;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
 
     private static final String PHPSESSID_COOKIE_NAME = "PHPSESSID";
 
-    protected static WebDriver driver;
-    protected static BaseSQLPage baseSQLPage;
+    protected ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+    protected BaseSQLPage baseSQLPage;
+
+    protected WebDriver getWebDriver() {
+        return driver.get();
+    }
 
     @BeforeClass
-    public void setup() {
+    public void setup() throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfHelpers.getProperty("sqlTestPage"));
+        ChromeOptions options = new ChromeOptions();
+        driver.set(new RemoteWebDriver(new URL(Constants.URL_GRID), options));
+        getWebDriver().manage().window().maximize();
+        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        getWebDriver().get(ConfHelpers.getProperty("sqlTestPage"));
 
-        baseSQLPage = new BaseSQLPage(driver);
+        baseSQLPage = new BaseSQLPage(getWebDriver());
     }
 
     @Severity(SeverityLevel.MINOR)
@@ -42,14 +51,14 @@ public class BaseTest {
         baseSQLPage.setPassword(ConfHelpers.getProperty("passwordCookies"));
         baseSQLPage.clickInputButton();
 
-        CookiesHelper.writerReaderCookies(driver);
+        CookiesHelper.writerReaderCookies(getWebDriver());
 
-        driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        driver.get(ConfHelpers.getProperty("sqlTestPage"));
-        driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        CookiesHelper.readerReaderCookies(driver);
-        driver.get(ConfHelpers.getProperty("sqlTestPage"));
-        driver.get("https://www.sql-ex.ru/personal.php");
+        getWebDriver().manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
+        getWebDriver().get(ConfHelpers.getProperty("sqlTestPage"));
+        getWebDriver().manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
+        CookiesHelper.readerReaderCookies(getWebDriver());
+        getWebDriver().get(ConfHelpers.getProperty("sqlTestPage"));
+        getWebDriver().get("https://www.sql-ex.ru/personal.php");
 
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(baseSQLPage.getNickname()).isNotNull();
@@ -57,7 +66,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public static void exit() {
-        driver.quit();
+    public void exit() {
+        getWebDriver().quit();
     }
 }

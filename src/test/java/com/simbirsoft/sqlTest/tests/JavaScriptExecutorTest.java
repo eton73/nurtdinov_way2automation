@@ -1,6 +1,5 @@
 package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelpers;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
