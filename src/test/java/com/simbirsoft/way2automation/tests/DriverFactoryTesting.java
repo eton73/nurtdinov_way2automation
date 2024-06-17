@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelpers;
+import com.simbirsoft.way2automation.helpers.ConfHelper;
 import com.simbirsoft.way2automation.helpers.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +27,7 @@ public class DriverFactoryTesting {
     @Parameters({"browserType"})
     public void testExamplePageOnMultipleBrowsers(String browserType) {
         if (browserType.equalsIgnoreCase("Chrome")) {
-            System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
+            System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
             driver = new ChromeDriver();
         } else if (browserType.equalsIgnoreCase("Edge")) {
             WebDriverManager.edgedriver().setup();
@@ -40,7 +40,7 @@ public class DriverFactoryTesting {
             driver = new InternetExplorerDriver();
         }
         driver.manage().window().maximize();
-        driver.get(ConfHelpers.getProperty("startPage"));
+        driver.get(ConfHelper.getProperty("startPage"));
         System.out.println(browserType + ": " + driver.getTitle());
     }
 
@@ -48,7 +48,7 @@ public class DriverFactoryTesting {
     @Parameters({"browserType"})
     public void testExamplePageOnMultipleBrowsersWithGRID(String browserType) throws MalformedURLException {
         if (browserType.equalsIgnoreCase("Chrome")) {
-            System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
+            System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
             ChromeOptions options = new ChromeOptions();
             driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
             driver.manage().window().maximize();
@@ -64,7 +64,7 @@ public class DriverFactoryTesting {
             driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
         }
 
-        driver.get(ConfHelpers.getProperty("startPage"));
+        driver.get(ConfHelper.getProperty("startPage"));
         System.out.println(browserType + ": " + driver.getTitle());
     }
 
