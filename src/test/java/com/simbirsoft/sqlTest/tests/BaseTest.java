@@ -1,6 +1,6 @@
 package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelpers;
+import com.simbirsoft.way2automation.helpers.ConfHelper;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;
@@ -22,12 +22,12 @@ public class BaseTest {
 
     @BeforeClass
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
+        System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfHelpers.getProperty("sqlTestPage"));
+        driver.get(ConfHelper.getProperty("sqlTestPage"));
 
         baseSQLPage = new BaseSQLPage(driver);
     }
@@ -38,17 +38,17 @@ public class BaseTest {
     @Story("Сохранить Cookies и войти по сохранённым кукам на сайт")
     @Test
     public void testASave() {
-        baseSQLPage.setLogin(ConfHelpers.getProperty("userNameCookies"));
-        baseSQLPage.setPassword(ConfHelpers.getProperty("passwordCookies"));
+        baseSQLPage.setLogin(ConfHelper.getProperty("userNameCookies"));
+        baseSQLPage.setPassword(ConfHelper.getProperty("passwordCookies"));
         baseSQLPage.clickInputButton();
 
         CookiesHelper.writerReaderCookies(driver);
 
         driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        driver.get(ConfHelpers.getProperty("sqlTestPage"));
+        driver.get(ConfHelper.getProperty("sqlTestPage"));
         driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
         CookiesHelper.readerReaderCookies(driver);
-        driver.get(ConfHelpers.getProperty("sqlTestPage"));
+        driver.get(ConfHelper.getProperty("sqlTestPage"));
         driver.get("https://www.sql-ex.ru/personal.php");
 
         SoftAssertions softAssertions = new SoftAssertions();
