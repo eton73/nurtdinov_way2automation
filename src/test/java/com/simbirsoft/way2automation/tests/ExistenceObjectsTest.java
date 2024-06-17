@@ -12,14 +12,15 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 
 public class ExistenceObjectsTest extends BaseTest {
-    protected MainPage mainPage;
+
+    private MainPage mainPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {
         super.setup();
-        getWebDriver().get(ConfHelper.getProperty("startPage"));
+        driver.get(ConfHelper.getProperty("startPage"));
 
-        mainPage = new MainPage(getWebDriver());
+        mainPage = new MainPage(driver);
     }
 
     @Severity(SeverityLevel.MINOR)
@@ -69,11 +70,11 @@ public class ExistenceObjectsTest extends BaseTest {
         WebElement videoTutorial = mainPage.getVideoMenu();
         WebElement robotFramework = mainPage.getVideoRobotFramework();
 
-        Actions action = new Actions(getWebDriver());
+        Actions action = new Actions(driver);
         action.moveToElement(videoTutorial).perform();
 
         robotFramework.click();
 
-        getWebDriver().get(ConfHelper.getProperty("startPage"));
+        driver.get(ConfHelper.getProperty("startPage"));
     }
 }

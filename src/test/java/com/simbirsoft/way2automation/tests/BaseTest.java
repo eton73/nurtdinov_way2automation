@@ -22,11 +22,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
-
-    protected WebDriver getWebDriver() {
-        return this.driver.get();
-    }
+    protected WebDriver driver;
 
     @BeforeSuite
     public void setUpTestsSuite(ITestContext testsContext) {
@@ -42,20 +38,20 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
-        driver.set(new RemoteWebDriver(new URL(Constants.URL_GRID), options));
-        getWebDriver().manage().window().maximize();
-        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterMethod
     public void makeScreenshot(ITestResult tr) throws IOException {
         if (!tr.isSuccess()) {
-            ScreenshotHelper.makeScreenshotToByte(getWebDriver());
+            ScreenshotHelper.makeScreenshotToByte(driver);
         }
     }
 
     @AfterClass
     public void exit() {
-        driver.get().quit();
+        driver.quit();
     }
 }

@@ -21,24 +21,20 @@ public class BaseTest {
 
     private static final String PHPSESSID_COOKIE_NAME = "PHPSESSID";
 
-    protected ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+    protected WebDriver driver;
     protected BaseSQLPage baseSQLPage;
-
-    protected WebDriver getWebDriver() {
-        return driver.get();
-    }
 
     @BeforeClass
     public void setup() throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
-        driver.set(new RemoteWebDriver(new URL(Constants.URL_GRID), options));
-        getWebDriver().manage().window().maximize();
-        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        getWebDriver().get(ConfHelper.getProperty("sqlTestPage"));
+        driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(ConfHelper.getProperty("sqlTestPage"));
 
-        baseSQLPage = new BaseSQLPage(getWebDriver());
+        baseSQLPage = new BaseSQLPage(driver);
     }
 
     @Severity(SeverityLevel.MINOR)
@@ -51,14 +47,14 @@ public class BaseTest {
         baseSQLPage.setPassword(ConfHelper.getProperty("passwordCookies"));
         baseSQLPage.clickInputButton();
 
-        CookiesHelper.writerReaderCookies(getWebDriver());
+        CookiesHelper.writerReaderCookies(driver);
 
-        getWebDriver().manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        getWebDriver().get(ConfHelper.getProperty("sqlTestPage"));
-        getWebDriver().manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        CookiesHelper.readerReaderCookies(getWebDriver());
-        getWebDriver().get(ConfHelper.getProperty("sqlTestPage"));
-        getWebDriver().get("https://www.sql-ex.ru/personal.php");
+        driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
+        driver.get(ConfHelper.getProperty("sqlTestPage"));
+        driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
+        CookiesHelper.readerReaderCookies(driver);
+        driver.get(ConfHelper.getProperty("sqlTestPage"));
+        driver.get("https://www.sql-ex.ru/personal.php");
 
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(baseSQLPage.getNickname()).isNotNull();
@@ -67,6 +63,6 @@ public class BaseTest {
 
     @AfterClass
     public void exit() {
-        getWebDriver().quit();
+        driver.quit();
     }
 }
