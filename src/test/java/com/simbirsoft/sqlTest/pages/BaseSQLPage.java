@@ -63,7 +63,7 @@ public class BaseSQLPage {
         login.sendKeys("future");
         JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-        jse.executeScript("document.querySelector(\"input\").blur()");
+        jse.executeScript("document.querySelector(\"[name=\\\"login\\\"]\").blur()");
         return (Boolean) jse.executeScript("return document.activeElement == document.body");
     }
 
