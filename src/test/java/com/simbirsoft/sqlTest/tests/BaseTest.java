@@ -1,6 +1,6 @@
 package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelpers;
+import com.simbirsoft.way2automation.helpers.ConfHelper;
 import com.simbirsoft.way2automation.helpers.Constants;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
@@ -30,13 +30,13 @@ public class BaseTest {
 
     @BeforeClass
     public void setup() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
+        System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
         driver.set(new RemoteWebDriver(new URL(Constants.URL_GRID), options));
         getWebDriver().manage().window().maximize();
         getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        getWebDriver().get(ConfHelpers.getProperty("sqlTestPage"));
+        getWebDriver().get(ConfHelper.getProperty("sqlTestPage"));
 
         baseSQLPage = new BaseSQLPage(getWebDriver());
     }
@@ -47,17 +47,17 @@ public class BaseTest {
     @Story("Сохранить Cookies и войти по сохранённым кукам на сайт")
     @Test
     public void testASave() {
-        baseSQLPage.setLogin(ConfHelpers.getProperty("userNameCookies"));
-        baseSQLPage.setPassword(ConfHelpers.getProperty("passwordCookies"));
+        baseSQLPage.setLogin(ConfHelper.getProperty("userNameCookies"));
+        baseSQLPage.setPassword(ConfHelper.getProperty("passwordCookies"));
         baseSQLPage.clickInputButton();
 
         CookiesHelper.writerReaderCookies(getWebDriver());
 
         getWebDriver().manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        getWebDriver().get(ConfHelpers.getProperty("sqlTestPage"));
+        getWebDriver().get(ConfHelper.getProperty("sqlTestPage"));
         getWebDriver().manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
         CookiesHelper.readerReaderCookies(getWebDriver());
-        getWebDriver().get(ConfHelpers.getProperty("sqlTestPage"));
+        getWebDriver().get(ConfHelper.getProperty("sqlTestPage"));
         getWebDriver().get("https://www.sql-ex.ru/personal.php");
 
         SoftAssertions softAssertions = new SoftAssertions();

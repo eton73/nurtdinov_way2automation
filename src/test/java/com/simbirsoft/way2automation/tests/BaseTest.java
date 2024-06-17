@@ -3,7 +3,7 @@ package com.simbirsoft.way2automation.tests;
 import com.simbirsoft.way2automation.helpers.Constants;
 import com.simbirsoft.way2automation.helpers.RunTestAgain;
 import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
-import com.simbirsoft.way2automation.helpers.ConfHelpers;
+import com.simbirsoft.way2automation.helpers.ConfHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -39,7 +39,7 @@ public class BaseTest {
 
     @BeforeClass
     public void setup() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
+        System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
         driver.set(new RemoteWebDriver(new URL(Constants.URL_GRID), options));
