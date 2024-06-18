@@ -1,7 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
 import com.simbirsoft.way2automation.helpers.ScreenshotHelper;
-import com.simbirsoft.way2automation.pages.MainPage;
 import com.simbirsoft.way2automation.helpers.ConfHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,8 +17,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected static WebDriver driver;
-    protected static MainPage mainPage;
+    protected WebDriver driver;
 
     @BeforeClass
     public void setup() throws MalformedURLException {
@@ -39,7 +37,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public static void exit() {
+    public void exit() {
         driver.quit();
     }
 }

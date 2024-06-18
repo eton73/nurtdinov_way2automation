@@ -15,8 +15,8 @@ import java.net.MalformedURLException;
 
 public class DateProviderBaseTest extends BaseTest {
 
-    protected static RegistrationPage registrationPage;
-    protected static SuccessfulRegistrationPage successfulRegistrationPage;
+    protected RegistrationPage registrationPage;
+    protected SuccessfulRegistrationPage successfulRegistrationPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {

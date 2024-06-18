@@ -17,8 +17,8 @@ public class BaseTest {
 
     private static final String PHPSESSID_COOKIE_NAME = "PHPSESSID";
 
-    protected static WebDriver driver;
-    protected static BaseSQLPage baseSQLPage;
+    protected WebDriver driver;
+    protected BaseSQLPage baseSQLPage;
 
     @BeforeClass
     public void setup() {
@@ -57,7 +57,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public static void exit() {
+    public void exit() {
         driver.quit();
     }
 }

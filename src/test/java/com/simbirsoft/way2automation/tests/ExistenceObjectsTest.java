@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 
 public class ExistenceObjectsTest extends BaseTest {
-    protected static MainPage mainPage;
+    protected MainPage mainPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {

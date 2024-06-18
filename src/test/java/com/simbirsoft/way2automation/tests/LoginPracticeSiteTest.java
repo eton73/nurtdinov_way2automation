@@ -13,8 +13,8 @@ import java.net.MalformedURLException;
 
 public class LoginPracticeSiteTest extends BaseTest {
 
-    protected static RegistrationPage registrationPage;
-    protected static SuccessfulRegistrationPage successfulRegPage;
+    protected RegistrationPage registrationPage;
+    protected SuccessfulRegistrationPage successfulRegPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {
