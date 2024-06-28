@@ -15,8 +15,6 @@ public class CookiesHelper {
         File file = new File("Cookies.data");
 
         try {
-            file.delete();
-            file.createNewFile();
             if (!file.createNewFile()) {
                 file.deleteOnExit();
             }

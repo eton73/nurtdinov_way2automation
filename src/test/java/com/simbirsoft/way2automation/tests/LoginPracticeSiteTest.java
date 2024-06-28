@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelper;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegistrationPage;
 import io.qameta.allure.*;

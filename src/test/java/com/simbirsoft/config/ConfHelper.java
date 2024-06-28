@@ -1,4 +1,4 @@
-package com.simbirsoft.way2automation.helpers;
+package com.simbirsoft.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;

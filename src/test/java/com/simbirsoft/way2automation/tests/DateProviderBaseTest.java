@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelper;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegistrationPage;
 import io.qameta.allure.*;
@@ -15,23 +15,8 @@ import java.net.MalformedURLException;
 
 public class DateProviderBaseTest extends BaseTest {
 
-    protected RegistrationPage registrationPage;
-    protected SuccessfulRegistrationPage successfulRegistrationPage;
-
-    @BeforeClass
-    public static void setup() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
-
-        ChromeOptions options = new ChromeOptions();
-        driver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfProperties.getProperty("registrationPage"));
-
-        registrationPage = new RegistrationPage(driver);
-        successfulRegistrationPage = new SuccessfulRegPage(driver);
-    protected RegistrationPage registrationPage;
-    protected SuccessfulRegistrationPage successfulRegistrationPage;
+    private RegistrationPage registrationPage;
+    private SuccessfulRegistrationPage successfulRegistrationPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {

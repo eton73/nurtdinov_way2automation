@@ -1,7 +1,7 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
-import com.simbirsoft.way2automation.helpers.Constants;
+import com.simbirsoft.config.ConfHelper;
+import com.simbirsoft.config.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
