@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelper;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegistrationPage;
 import io.qameta.allure.*;
@@ -15,8 +15,8 @@ import java.net.MalformedURLException;
 
 public class DateProviderBaseTest extends BaseTest {
 
-    protected RegistrationPage registrationPage;
-    protected SuccessfulRegistrationPage successfulRegistrationPage;
+    private RegistrationPage registrationPage;
+    private SuccessfulRegistrationPage successfulRegistrationPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {

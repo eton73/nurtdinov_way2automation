@@ -1,16 +1,20 @@
 package com.simbirsoft.sqlTest.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelper;
+import com.simbirsoft.config.Constants;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
@@ -21,10 +25,11 @@ public class BaseTest {
     protected BaseSQLPage baseSQLPage;
 
     @BeforeClass
-    public void setup() {
+    public void setup() throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
 
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(ConfHelper.getProperty("sqlTestPage"));
