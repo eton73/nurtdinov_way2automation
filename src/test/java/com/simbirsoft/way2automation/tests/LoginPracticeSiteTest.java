@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegistrationPage;
 import io.qameta.allure.*;
@@ -19,7 +19,7 @@ public class LoginPracticeSiteTest extends BaseTest {
     @BeforeClass
     public void setup() throws MalformedURLException {
         super.setup();
-        driver.get(ConfHelper.getProperty("registrationPage"));
+        driver.get(ConfHelpers.getProperty("registrationPage"));
 
         registrationPage = new RegistrationPage(driver);
         successfulRegPage = new SuccessfulRegistrationPage(driver);
@@ -32,9 +32,9 @@ public class LoginPracticeSiteTest extends BaseTest {
     @Test
     public void test() {
         registrationPage.fillForm(
-            ConfHelper.getProperty("userName"),
-            ConfHelper.getProperty("password"),
-            ConfHelper.getProperty("description")
+                ConfHelpers.getProperty("userName"),
+                ConfHelpers.getProperty("password"),
+                ConfHelpers.getProperty("description")
         ).clickLoginButton();
         WebElement resultLogged = successfulRegPage.getLoggedIn();
 

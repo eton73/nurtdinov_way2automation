@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.way2automation.pages.RegistrationPage;
 import com.simbirsoft.way2automation.pages.SuccessfulRegistrationPage;
 import io.qameta.allure.*;
@@ -15,13 +15,13 @@ import java.net.MalformedURLException;
 
 public class DateProviderBaseTest extends BaseTest {
 
-    protected RegistrationPage registrationPage;
-    protected SuccessfulRegistrationPage successfulRegistrationPage;
+    private RegistrationPage registrationPage;
+    private SuccessfulRegistrationPage successfulRegistrationPage;
 
     @BeforeClass
     public void setup() throws MalformedURLException {
         super.setup();
-        driver.get(ConfHelper.getProperty("registrationPage"));
+        driver.get(ConfHelpers.getProperty("registrationPage"));
 
         registrationPage = new RegistrationPage(driver);
         successfulRegistrationPage = new SuccessfulRegistrationPage(driver);
@@ -48,7 +48,7 @@ public class DateProviderBaseTest extends BaseTest {
                 description
         ).clickLoginButton();
 
-        if (name.equals(ConfHelper.getProperty("userName")) && password.equals(ConfHelper.getProperty("password"))) {
+        if (name.equals(ConfHelpers.getProperty("userName")) && password.equals(ConfHelpers.getProperty("password"))) {
             WebElement resultLogged = successfulRegistrationPage.getLoggedIn();
 
             softAssertions.assertThat(resultLogged).isNotNull();

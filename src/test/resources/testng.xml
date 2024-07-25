@@ -8,4 +8,37 @@
             <class name="com.simbirsoft.way2automation.tests.LoginPracticeSiteTest" />
         </classes>
     </test>
+    <test name = "Test On Chrome">
+        <parameter name = "browserType" value="Chrome"/>
+        <classes>
+            <class name = "com.simbirsoft.way2automation.tests.DriverFactoryTest">
+                <methods>
+                    <include name="testExamplePageOnMultipleBrowsers"/>
+                    <include name="testExamplePageOnMultipleBrowsersWithGRID"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "Test On Edge">
+        <parameter name = "browserType" value="Edge"/>
+        <classes>
+            <class name = "com.simbirsoft.way2automation.tests.DriverFactoryTest">
+                <methods>
+                    <include name="testExamplePageOnMultipleBrowsers"/>
+                    <include name="testExamplePageOnMultipleBrowsersWithGRID"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "Test On Firefox">
+        <parameter name = "browserType" value="Firefox"/>
+        <classes>
+            <class name = "com.simbirsoft.way2automation.tests.DriverFactoryTest">
+                <methods>
+                    <include name="testExamplePageOnMultipleBrowsers"/>
+                    <include name="testExamplePageOnMultipleBrowsersWithGRID"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

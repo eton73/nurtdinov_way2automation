@@ -14,12 +14,15 @@ public class ScreenshotHelper {
 
     @Attachment(value = "Attachment Screenshot", type = "image/png")
     public static byte[] makeScreenshotToByte(WebDriver driver) throws IOException {
-        Screenshot screenshot = new AShot()
-            .shootingStrategy(ShootingStrategies.viewportPasting(100))
-            .takeScreenshot(driver);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(screenshot.getImage(), "jpg", baos);
-        return baos.toByteArray();
+        if (driver != null) {
+            Screenshot screenshot = new AShot()
+                    .shootingStrategy(ShootingStrategies.viewportPasting(100))
+                    .takeScreenshot(driver);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(screenshot.getImage(), "jpg", baos);
+            return baos.toByteArray();
+        }
+        return null;
     }
 
 }
