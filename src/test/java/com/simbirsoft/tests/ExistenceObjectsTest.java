@@ -1,7 +1,7 @@
 package com.simbirsoft.tests;
 
 import com.simbirsoft.BaseTest;
-import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.config.ConfHelpers;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
@@ -16,7 +16,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @Story("Проверка наличия элементов")
     @Test
     public void testElements() {
-        driver.get(ConfProperties.getProperty("startPage"));
+        driver.get(ConfHelpers.getProperty("startPage"));
         WebElement resultHeader = mainPage.getHeader();
         WebElement resultMenu = mainPage.getMenu();
         WebElement resultCertification = mainPage.getCertification();

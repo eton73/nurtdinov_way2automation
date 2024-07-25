@@ -7,8 +7,12 @@ import java.io.*;
 import java.time.Instant;
 import java.util.Date;
 import java.util.StringTokenizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CookiesHelper {
+
+    private static final Logger logger = LoggerFactory.getLogger(CookiesHelper.class);
 
     public static void writerReaderCookies(WebDriver driver) {
 
@@ -56,7 +60,7 @@ public class CookiesHelper {
                     }
                     boolean isSecure = Boolean.parseBoolean(token.nextToken());
                     Cookie ck = new Cookie(name, value, domain, path, expiry, isSecure);
-                    System.out.println(ck);
+                    logger.debug(String.valueOf(ck));
                     driver.manage().addCookie(ck);
                 }
             }

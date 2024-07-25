@@ -1,6 +1,6 @@
 package com.simbirsoft.way2automation.tests;
 
-import com.simbirsoft.way2automation.helpers.ConfHelper;
+import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.way2automation.pages.MainPage;
 import io.qameta.allure.*;
 import org.assertj.core.api.SoftAssertions;
@@ -17,7 +17,7 @@ public class ExistenceObjectsTest extends BaseTest {
     @BeforeClass
     public void setup() throws MalformedURLException {
         super.setup();
-        driver.get(ConfHelper.getProperty("startPage"));
+        driver.get(ConfHelpers.getProperty("startPage"));
 
         mainPage = new MainPage(driver);
     }
@@ -74,6 +74,6 @@ public class ExistenceObjectsTest extends BaseTest {
 
         robotFramework.click();
 
-        driver.get(ConfHelper.getProperty("startPage"));
+        driver.get(ConfHelpers.getProperty("startPage"));
     }
 }

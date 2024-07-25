@@ -1,7 +1,7 @@
 package com.simbirsoft.tests;
 
 import com.simbirsoft.BaseTest;
-import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.pages.RegistrationPage;
 import com.simbirsoft.pages.SuccessfulRegPage;
 import io.qameta.allure.*;
@@ -21,12 +21,12 @@ public class LoginPracticeSiteTest extends BaseTest {
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
+        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfProperties.getProperty("registrationPage"));
+        driver.get(ConfHelpers.getProperty("registrationPage"));
 
         registrationPage = new RegistrationPage(driver);
         successfulRegPage = new SuccessfulRegPage(driver);
@@ -39,9 +39,9 @@ public class LoginPracticeSiteTest extends BaseTest {
     @Test
     public void test() {
         registrationPage.fillForm(
-            ConfProperties.getProperty("userName"),
-            ConfProperties.getProperty("password"),
-            ConfProperties.getProperty("description")
+                ConfHelpers.getProperty("userName"),
+                ConfHelpers.getProperty("password"),
+                ConfHelpers.getProperty("description")
         ).clickLoginButton();
         WebElement resultLogged = successfulRegPage.getLoggedIn();
 

@@ -1,6 +1,6 @@
 package com.simbirsoft;
 
-import com.simbirsoft.config.ConfProperties;
+import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.pages.MainPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,12 +16,12 @@ public class BaseTest {
 
     @BeforeClass
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
+        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfProperties.getProperty("startPage"));
+        driver.get(ConfHelpers.getProperty("startPage"));
 
         mainPage = new MainPage(driver);
     }

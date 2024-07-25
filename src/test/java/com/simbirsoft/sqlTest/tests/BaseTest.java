@@ -1,16 +1,21 @@
 package com.simbirsoft.sqlTest.tests;
 
+import com.simbirsoft.config.ConfHelpers;
+import com.simbirsoft.config.Constants;
 import com.simbirsoft.way2automation.helpers.ConfHelper;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
@@ -21,13 +26,14 @@ public class BaseTest {
     protected BaseSQLPage baseSQLPage;
 
     @BeforeClass
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", ConfHelper.getProperty("chromedriver"));
+    public void setup() throws MalformedURLException {
+        System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL(Constants.URL_GRID), options);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(ConfHelper.getProperty("sqlTestPage"));
+        driver.get(ConfHelpers.getProperty("sqlTestPage"));
 
         baseSQLPage = new BaseSQLPage(driver);
     }
@@ -38,17 +44,17 @@ public class BaseTest {
     @Story("Сохранить Cookies и войти по сохранённым кукам на сайт")
     @Test
     public void testASave() {
-        baseSQLPage.setLogin(ConfHelper.getProperty("userNameCookies"));
-        baseSQLPage.setPassword(ConfHelper.getProperty("passwordCookies"));
+        baseSQLPage.setLogin(ConfHelpers.getProperty("userNameCookies"));
+        baseSQLPage.setPassword(ConfHelpers.getProperty("passwordCookies"));
         baseSQLPage.clickInputButton();
 
         CookiesHelper.writerReaderCookies(driver);
 
         driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
-        driver.get(ConfHelper.getProperty("sqlTestPage"));
+        driver.get(ConfHelpers.getProperty("sqlTestPage"));
         driver.manage().deleteCookieNamed(PHPSESSID_COOKIE_NAME);
         CookiesHelper.readerReaderCookies(driver);
-        driver.get(ConfHelper.getProperty("sqlTestPage"));
+        driver.get(ConfHelpers.getProperty("sqlTestPage"));
         driver.get("https://www.sql-ex.ru/personal.php");
 
         SoftAssertions softAssertions = new SoftAssertions();
