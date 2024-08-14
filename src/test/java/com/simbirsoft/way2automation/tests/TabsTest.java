@@ -4,6 +4,7 @@ import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.way2automation.helpers.TabsHelper;
 import com.simbirsoft.way2automation.pages.FirstTabsPage;
 import io.qameta.allure.*;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -29,12 +30,26 @@ public class TabsTest extends BaseTest {
     @Story("Открытие вкладок и переключение между ними")
     @Test
     public void tabsTest() {
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(firstTabsPage.getHeading()).isNotNull();
+
         driver.switchTo().frame(firstTabsPage.getFrame());
         String url2 = firstTabsPage.newBrowserTabsGetLink();
         TabsHelper.createNewTab(driver, url2);
+
+        softAssertions.assertThat(firstTabsPage.getHeading()).isNull();
+
         String url3 = firstTabsPage.newBrowserTabsGetLink();
         TabsHelper.createNewTab(driver, url3);
+
+        softAssertions.assertThat(firstTabsPage.getHeading()).isNull();
+
         TabsHelper.switchFromSecondTabToFirst(driver, handleHost);
+
+        softAssertions.assertThat(firstTabsPage.getHeading()).isNotNull();
+
         TabsHelper.switchFromFirstPageToSecond(driver, handleHost);
+
+        softAssertions.assertThat(firstTabsPage.getHeading()).isNull();
     }
 }

@@ -18,12 +18,25 @@ public class FirstTabsPage {
     @FindBy(className = "demo-frame")
     private WebElement frame;
 
+    @FindBy(className = "heading")
+    private WebElement heading;
+
     @FindBy(css = "html > body > div")
     private WebElement newBrowserTabs;
+
+    @Step("Получить элемент New Browser Tabs")
+    public WebElement getNewBrowserTabs() {
+        return newBrowserTabs;
+    }
 
     @Step("Найти элемент frame")
     public WebElement getFrame() {
         return frame;
+    }
+
+    @Step("Получить элемент заголовка")
+    public WebElement getHeading() {
+        return heading;
     }
 
     @Step("Получить ссылку для открытия нового окна")
