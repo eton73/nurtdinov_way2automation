@@ -1,5 +1,6 @@
 package com.simbirsoft.sqlTest.helpers;
 
+import io.cucumber.java.en.And;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
@@ -14,6 +15,7 @@ public class CookiesHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(CookiesHelper.class);
 
+    @And("Записать Cookies в файл")
     public static void writerReaderCookies(WebDriver driver) {
 
         File file = new File("Cookies.data");
@@ -39,6 +41,7 @@ public class CookiesHelper {
         }
     }
 
+    @And("Прочитать Cookies из файла")
     public static void readerReaderCookies(WebDriver driver) {
 
         try {

@@ -2,6 +2,7 @@ package com.simbirsoft.sqlTest.tests;
 
 import com.simbirsoft.config.ConfHelpers;
 import com.simbirsoft.config.Constants;
+import io.cucumber.java.en.Given;
 import io.qameta.allure.*;
 import com.simbirsoft.sqlTest.helpers.CookiesHelper;
 import com.simbirsoft.sqlTest.pages.BaseSQLPage;
@@ -9,7 +10,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,6 +25,7 @@ public class BaseTest {
     protected BaseSQLPage baseSQLPage;
 
     @BeforeClass
+    @Given("Открываем страницу сайта sql-ex.ru")
     public void setup() throws MalformedURLException {
         System.setProperty("webdriver.chrome.driver", ConfHelpers.getProperty("chromedriver"));
 
