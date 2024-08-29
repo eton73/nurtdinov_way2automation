@@ -1,5 +1,7 @@
 package com.simbirsoft.sqlTest.pages;
 
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,21 +34,25 @@ public class BaseSQLPage {
     @FindBy(className = "none")
     private WebElement nickName;
 
+    @And("Ввести в поле \"Логин\" свой логин")
     @Step("Ввести имя пользователя")
     public void setLogin(String value) {
         login.sendKeys(value);
     }
 
+    @And("Ввести в поле \"Пароль\" свой пароль")
     @Step("Ввести пароль пользователя")
     public void setPassword(String value) {
         password.sendKeys(value);
     }
 
+    @And("Нажать кнопку входа \"Вход\"")
     @Step("Кликнуть кнопку входа")
     public void clickInputButton(){
         input.click();
     }
 
+    @Then("Фиксируем, что Nick Name найден")
     @Step("Найти псевдоним")
     public WebElement getNickname() {
         return nickName;
