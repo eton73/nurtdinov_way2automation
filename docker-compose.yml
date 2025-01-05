@@ -1,0 +1,20 @@
+services:
+  selenium-chrome:
+    image: selenium/standalone-chrome
+  selenium-grid:
+    image: selenium/hub
+  selenium-firefox:
+    image: selenium/standalone-firefox
+  selenium-edge:
+    image: selenium/standalone-edge
+
+  app:
+    depends_on:
+      - selenium-chrome
+      - selenium-grid
+      - selenium-firefox
+      - selenium-edge
+    build: .
+    restart: always
+    ports:
+      - "8082:8082"
